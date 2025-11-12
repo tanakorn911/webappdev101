@@ -76,9 +76,12 @@ It uses **vanilla JavaScript** for particle animation and **CSS glassmorphism** 
         }
 
 🧑‍🎨 Author
+
 👨‍💻 Tanakorn Kaewmai |
 Full Stack Developer
+
 📧 tanakorn488@outlook.com
+
 🌍 GitHub Profile [https://github.com/tanakorn911]
 
 
