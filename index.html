@@ -1,285 +1,360 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanakorn Kaewmai - Full Stack Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tanakorn Kaewmai - Full Stack Developer</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #fff;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-RXf+QSDCUQs6Q0A1Cw1Yj7V+UbbTVdNqk0b4SdC0YV6Y/6x6Ox7lY2V9DMEZ4a+QKZ1nF2V5Q2Zy5zQyQ9MZw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+    
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-        .shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
+    /* 🔹 เอฟเฟกต์อนุภาคเรืองแสง */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
 
-        .shape.circle {
-            width: 100px;
-            height: 100px;
-            border: 2px solid #00d4ff;
-            border-radius: 50%;
-        }
+    .floating-shapes {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        .shape.square {
-            width: 80px;
-            height: 80px;
-            border: 2px solid #ff006e;
-            transform: rotate(45deg);
-        }
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 20s infinite ease-in-out;
+    }
 
-        .shape.triangle {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 86px solid rgba(138, 43, 226, 0.3);
-        }
+    .shape.circle {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #00d4ff;
+      border-radius: 50%;
+    }
 
-        .shape:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .shape:nth-child(2) { top: 60%; left: 80%; animation-delay: -5s; }
-        .shape:nth-child(3) { top: 30%; left: 70%; animation-delay: -10s; }
-        .shape:nth-child(4) { top: 70%; left: 20%; animation-delay: -15s; }
-        .shape:nth-child(5) { top: 20%; left: 50%; animation-delay: -7s; }
-        .shape:nth-child(6) { top: 80%; left: 60%; animation-delay: -12s; }
+    .shape.square {
+      width: 80px;
+      height: 80px;
+      border: 2px solid #ff006e;
+      transform: rotate(45deg);
+    }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-30px) translateX(20px) rotate(90deg);
-            }
-            50% {
-                transform: translateY(-60px) translateX(-20px) rotate(180deg);
-            }
-            75% {
-                transform: translateY(-30px) translateX(-40px) rotate(270deg);
-            }
-        }
+    .shape.triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 86px solid rgba(138, 43, 226, 0.3);
+    }
 
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .shape:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .shape:nth-child(2) {
+      top: 60%;
+      left: 80%;
+      animation-delay: -5s;
+    }
+    .shape:nth-child(3) {
+      top: 30%;
+      left: 70%;
+      animation-delay: -10s;
+    }
+    .shape:nth-child(4) {
+      top: 70%;
+      left: 20%;
+      animation-delay: -15s;
+    }
+    .shape:nth-child(5) {
+      top: 20%;
+      left: 50%;
+      animation-delay: -7s;
+    }
+    .shape:nth-child(6) {
+      top: 80%;
+      left: 60%;
+      animation-delay: -12s;
+    }
 
-        .profile-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 60px 80px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            animation: slideIn 1s ease-out;
-        }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-30px) translateX(20px) rotate(90deg);
+      }
+      50% {
+        transform: translateY(-60px) translateX(-20px) rotate(180deg);
+      }
+      75% {
+        transform: translateY(-30px) translateX(-40px) rotate(270deg);
+      }
+    }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .avatar {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 72px;
-            font-weight: bold;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
-            animation: pulse 3s infinite;
-            position: relative;
-            overflow: hidden;
-        }
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 60px 80px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      animation: slideIn 1s ease-out;
+    }
 
-        .avatar::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shine 3s infinite;
-        }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
+    .avatar {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      font-weight: bold;
+      box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+      animation: pulse 3s infinite;
+      position: relative;
+      overflow: hidden;
+    }
 
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
-            }
-        }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
 
-        h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #00d4ff, #ff006e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    @keyframes pulse {
+      0%,
+      100% {
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
+      }
+    }
 
-        .name-en {
-            font-size: 24px;
-            color: #a0a0a0;
-            margin-bottom: 20px;
-        }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #00d4ff, #ff006e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .title {
-            font-size: 32px;
-            color: #00d4ff;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
+    .name-en {
+      font-size: 24px;
+      color: #a0a0a0;
+      margin-bottom: 20px;
+    }
 
-        .title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-        }
+    .title {
+      font-size: 32px;
+      color: #00d4ff;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
 
-        .skills {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
+    .title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    }
 
-        .skill-tag {
-            background: rgba(0, 212, 255, 0.1);
-            border: 2px solid #00d4ff;
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+    .welcome-box {
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      padding: 15px 25px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 18px;
+      margin: 0 auto 30px;
+      max-width: 320px;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+      animation: fadeIn 2s ease;
+    }
 
-        .skill-tag:hover {
-            background: rgba(0, 212, 255, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-        }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .social-links {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
 
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-        }
+    .skill-tag {
+      background: rgba(0, 212, 255, 0.1);
+      border: 2px solid #00d4ff;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
 
-        .social-btn:hover {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-color: #667eea;
-            transform: translateY(-5px) rotate(360deg);
-        }
+    .skill-tag:hover {
+      background: rgba(0, 212, 255, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+    }
 
-        @media (max-width: 768px) {
-            .profile-card {
-                padding: 40px 30px;
-            }
-            
-            h1 {
-                font-size: 36px;
-            }
-            
-            .title {
-                font-size: 24px;
-            }
-        }
-    </style>
+    .social-links {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .social-btn:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-color: #667eea;
+      transform: translateY(-5px) rotate(360deg);
+    }
+
+    @media (max-width: 768px) {
+      .profile-card {
+        padding: 40px 30px;
+      }
+      h1 {
+        font-size: 36px;
+      }
+      .title {
+        font-size: 24px;
+      }
+    }
+  </style>
+
+  <!-- ใช้ icon จาก Font Awesome -->
+  <script
+    src="https://kit.fontawesome.com/4a3b6b4a3b.js"
+    crossorigin="anonymous"
+  ></script>
 </head>
 <body>
-    <div class="floating-shapes">
-        <div class="shape circle"></div>
-        <div class="shape square"></div>
-        <div class="shape triangle"></div>
-        <div class="shape circle"></div>
-        <div class="shape square"></div>
-        <div class="shape triangle"></div>
-    </div>
+  <canvas id="bgCanvas"></canvas>
 
-    <div class="container">
-        <div class="profile-card">
-            <div class="avatar">TK</div>
-            <h1>ธนกร แก้วใหม่</h1>
-            <div class="name-en">Tanakorn Kaewmai</div>
-            <div class="title">Full Stack Developer</div>
-            
-            <div class="skills">
-                <div class="skill-tag">Frontend</div>
-                <div class="skill-tag">Backend</div>
-                <div class="skill-tag">Database</div>
-                <div class="skill-tag">UI/UX</div>
-                <div class="skill-tag">API Design</div>
-            </div>
+  <div class="floating-shapes">
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+    <div class="shape triangle"></div>
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+    <div class="shape triangle"></div>
+  </div>
 
-            <div class="social-links">
+  <div class="container">
+    <div class="profile-card">
+      <div class="avatar">
+        <img src="./images/profile.jpg" alt="Tanakorn" />
+      </div>
+
+      <h1>ธนกร แก้วใหม่</h1>
+      <div class="name-en">Tanakorn Kaewmai</div>
+      <div class="title">Full Stack Developer</div>
+
+      <div class="welcome-box">ยินดีที่ได้รู้จักครับ 👋</div>
+
+      <div class="skills">
+        <div class="skill-tag">Frontend</div>
+        <div class="skill-tag">Backend</div>
+        <div class="skill-tag">Database</div>
+        <div class="skill-tag">UI/UX</div>
+        <div class="skill-tag">API Design</div>
+      </div>
+
+      <div class="social-links">
                 <a href="https://github.com/tanakorn911" class="social-btn" title="GitHub">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -296,7 +371,85 @@
                     </svg>
                 </a>
             </div>
-        </div>
     </div>
+  </div>
+
+  <!-- 🔹 เอฟเฟกต์อนุภาค -->
+  <script>
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let mouse = { x: null, y: null };
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    class Particle {
+      constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.dx = (Math.random() - 0.5) * 1;
+        this.dy = (Math.random() - 0.5) * 1;
+      }
+
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100) {
+          this.x += dx / distance;
+          this.y += dy / distance;
+        }
+
+        this.draw();
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < 80; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let size = Math.random() * 2 + 1;
+        let color = ["#00d4ff", "#ff006e", "#6a00f4"][
+          Math.floor(Math.random() * 3)
+        ];
+        particles.push(new Particle(x, y, size, color));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => p.update());
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
 </body>
 </html>
