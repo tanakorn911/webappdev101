@@ -42,11 +42,12 @@ It uses **vanilla JavaScript** for particle animation and **CSS glassmorphism** 
     open index.html
 
 3. **Optional – Edit your personal details**
-    ``` Update your name, title, and avatar inside the <div class="profile-card">. ```
-    ``` Replace your social links in the .social-links section. ```
+    ```
+    - Update your name, title, and avatar inside the <div class="profile-card">.
+    - Replace your social links in the .social-links section.
 
 4. **Folder Structure**
-
+    ```
     project/
     │
     ├── images/
@@ -75,10 +76,8 @@ It uses **vanilla JavaScript** for particle animation and **CSS glassmorphism** 
         }
 
 🧑‍🎨 Author
-
-👨‍💻 Tanakorn Kaewmai
+👨‍💻 Tanakorn Kaewmai |
 Full Stack Developer
-
 📧 tanakorn488@outlook.com
 🌍 GitHub Profile [https://github.com/tanakorn911]
 
